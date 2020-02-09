@@ -4,12 +4,27 @@ import BtnTab from './BtnTab';
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      firstTabOpened: true,
+      firstTabOpened: this.loadFirstTabOpened(),
     };
 
     document.addEventListener('keydown', this.keyBoardSwitchTab);
+
+    window.addEventListener('beforeunload', this.onPageLeave);
   }
+
+  loadFirstTabOpened() {
+    let firstTabOpened = sessionStorage.getItem('firstTabOpened');
+    if (firstTabOpened) {
+      return JSON.parse(firstTabOpened);
+    }
+    return true;
+  }
+
+  onPageLeave = () => {
+    sessionStorage.setItem('firstTabOpened', JSON.stringify(this.state.firstTabOpened));
+  };
 
   keyBoardSwitchTab = (e) => {
     if (e.code === 'Tab') {
@@ -62,7 +77,6 @@ class App extends React.Component {
       </>
     )
   }
-
 }
 
 export default App;

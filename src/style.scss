@@ -61,12 +61,12 @@ section {
     cursor: pointer;
     background: white;
 
-    &.current {
-     background: lightgray;
-    }
-
     &:hover {
      background: gray;
+    }
+
+    &.current {
+     background: lightgray;
     }
 
     &:first-child {
