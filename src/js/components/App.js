@@ -1,11 +1,59 @@
-import React from 'react'
+import React from 'react';
+import BtnTab from './BtnTab';
 
-const App = () => {
-  return (
-    <>
-      <div>...</div>
-    </>
-  )
-};
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstTabOpened: true,
+    };
+  }
+
+  setTab = (isFirstOpening) => {
+    this.setState({
+      firstTabOpened: isFirstOpening,
+    });
+  };
+
+  renderTabSwitcher() {
+    return (
+      <div className="tab-switcher">
+        <BtnTab handlerFunc={this.setTab}
+                isFirstOpening={true}
+                value={'first tab'}
+                isCurrent={this.state.firstTabOpened}
+        />
+
+        <BtnTab handlerFunc={this.setTab}
+                isFirstOpening={false}
+                value={'second tab'}
+                isCurrent={this.state.firstTabOpened}
+        />
+      </div>
+    );
+  }
+
+  render() {
+    if (this.state.firstTabOpened) {
+      return (
+        <>
+          {this.renderTabSwitcher()}
+          <div className={'tab'}>
+            first tab
+          </div>
+        </>
+      )
+    }
+    return (
+      <>
+        {this.renderTabSwitcher()}
+        <div className={'tab'}>
+          second tab
+        </div>
+      </>
+    )
+  }
+
+}
 
 export default App;

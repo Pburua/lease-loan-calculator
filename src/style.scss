@@ -34,7 +34,52 @@ main {
 
 section {
  width: 1000px;
- height: 500px;
+ height: 600px;
  margin: auto;
  background: white;
+
+ #app {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+
+  .tab-switcher {
+   display: flex;
+   width: 402px;
+   height: 50px;
+   margin: auto;
+
+   .btn-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-bottom: none;
+    cursor: pointer;
+    background: lightgray;
+
+    &:hover {
+     background: gray;
+    }
+
+    &.current {
+     background: white;
+    }
+
+    &:first-child {
+     border-right: none;
+    }
+   }
+  }
+
+  .tab {
+   width: 400px;
+   height: 400px;
+   margin: auto;
+   border: 1px solid gray;
+  }
+ }
 }
