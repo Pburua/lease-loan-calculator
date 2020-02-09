@@ -7,7 +7,16 @@ class App extends React.Component {
     this.state = {
       firstTabOpened: true,
     };
+
+    document.addEventListener('keydown', this.keyBoardSwitchTab);
   }
+
+  keyBoardSwitchTab = (e) => {
+    if (e.code === 'Tab') {
+      e.preventDefault();
+      this.setTab(!this.state.firstTabOpened);
+    }
+  };
 
   setTab = (isFirstOpening) => {
     this.setState({

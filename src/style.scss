@@ -59,14 +59,14 @@ section {
     border: 1px solid gray;
     border-bottom: none;
     cursor: pointer;
-    background: lightgray;
+    background: white;
+
+    &.current {
+     background: lightgray;
+    }
 
     &:hover {
      background: gray;
-    }
-
-    &.current {
-     background: white;
     }
 
     &:first-child {
@@ -80,6 +80,7 @@ section {
    height: 400px;
    margin: auto;
    border: 1px solid gray;
+   background: lightgray;
   }
  }
 }
