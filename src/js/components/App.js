@@ -1,5 +1,7 @@
 import React from 'react';
 import BtnTab from './BtnTab';
+import TextInput from './TextInput';
+import ButtonRowInput from './ButtonRowInput';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,7 +46,7 @@ class App extends React.Component {
       <div className="tab-switcher">
         <BtnTab handlerFunc={this.setTab}
                 isFirstOpening={true}
-                value={'first tab'}
+                value={'Loan'}
                 isCurrent={this.state.firstTabOpened}
         />
 
@@ -63,7 +65,12 @@ class App extends React.Component {
         <>
           {this.renderTabSwitcher()}
           <div className={'tab'}>
-            first tab
+            <TextInput idName={'downPayment'} pageName={'Down Payment'} defValue={0}/>
+            <TextInput idName={'tradeIn'} pageName={'Trade-In'} defValue={0}/>
+            <TextInput idName={'apr'} pageName={'APR'} defValue={0}/>
+            <TextInput idName={'postCode'} pageName={'Post Code'} defValue={'cur-post-code'}/>
+            <ButtonRowInput idName={'terms'} pageName={'Terms'} defValue={24} values={[12, 24, 36, 48, 72, 84]}/>
+            <ButtonRowInput idName={'creditScore'} pageName={'Credit Score'} defValue={750} values={[600, 650, 700, 750, 800, 850, 900]}/>
           </div>
         </>
       )
