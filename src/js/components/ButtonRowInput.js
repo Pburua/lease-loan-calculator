@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonInput from './ButtonInput';
 
 class ButtonRowInput extends React.Component {
   constructor(props) {
@@ -8,16 +9,25 @@ class ButtonRowInput extends React.Component {
     }
   }
 
+  updateValue = (btnValue) => {
+    this.setState( {
+      value: btnValue,
+    });
+  };
+
   render() {
     let buttons = [];
     for (let i = 0; i < this.props.values.length; i += 1) {
       let btnClass = '';
-      if (this.props.values[i] === this.props.defValue)
+      if (this.props.values[i] === this.state.value)
         btnClass = 'selected';
       buttons.push(
-        <button className={btnClass}
-                key={this.props.idName + '' + this.props.values[i]}>{this.props.values[i]}
-        </button>
+        <ButtonInput
+          btnClass={btnClass}
+          key={this.props.idName + '' + this.props.values[i]}
+          updateValueFunc={this.updateValue}
+          btnValue={this.props.values[i]}
+        />
       );
     }
 
