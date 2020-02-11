@@ -68,7 +68,7 @@ class App extends React.Component {
             <TextInput idName={'downPayment'} pageName={'Down Payment'} defValue={0}/>
             <TextInput idName={'tradeIn'} pageName={'Trade-In'} defValue={0}/>
             <TextInput idName={'apr'} pageName={'APR'} defValue={0}/>
-            <TextInput idName={'postCode'} pageName={'Post Code'} defValue={'cur-post-code'}/>
+            <TextInput idName={'postCode'} pageName={'Post Code'} defValue={0}/>
             <ButtonRowInput idName={'terms'} pageName={'Terms'} defValue={24} values={[12, 24, 36, 48, 72, 84]}/>
             <ButtonRowInput idName={'creditScore'} pageName={'Credit Score'} defValue={750} values={[600, 650, 700, 750, 800, 850, 900]}/>
           </div>
