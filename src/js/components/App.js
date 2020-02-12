@@ -7,18 +7,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    let formData = this.loadFormData();
+
     this.state = {
       firstTabOpened: this.loadFirstTabOpened(),
-      formData: {
-        downPayment: 0,
-        tradeIn: 0,
-        apr: 0,
-        postCode: 0,
-        terms: 24,
-        leaseTerms: 36,
-        creditScore: 750,
-        mileages: 12000,
-      },
+      formData: formData,
       calcResults: {
         monthlyPaymentLoan: 0,
         monthlyPaymentLease: 0,
@@ -39,11 +32,29 @@ class App extends React.Component {
     if (firstTabOpened) {
       return JSON.parse(firstTabOpened);
     }
-    return true;
+    return false;
+  }
+
+  loadFormData() {
+    let formData = sessionStorage.getItem('formData');
+    if (formData) {
+      return JSON.parse(formData);
+    }
+    return {
+      downPayment: 0,
+      tradeIn: 0,
+      apr: 0,
+      postCode: 0,
+      terms: 24,
+      leaseTerms: 36,
+      creditScore: 750,
+      mileages: 12000,
+    };
   }
 
   onPageLeave = () => {
     sessionStorage.setItem('firstTabOpened', JSON.stringify(this.state.firstTabOpened));
+    sessionStorage.setItem('formData', JSON.stringify(this.state.formData));
   };
 
   // keyboard actions
@@ -198,6 +209,7 @@ class App extends React.Component {
           <div className="column">
             {this.renderTabSwitcher()}
             <Form
+              formData={this.state.formData}
               firstTabOpened={this.state.firstTabOpened}
               onValueChange={this.updateAppData} />
             {this.renderErrMessages()}

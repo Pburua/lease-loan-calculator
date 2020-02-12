@@ -6,16 +6,7 @@ import ButtonRowInput from "./ButtonRowInput";
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      downPayment: 0,
-      tradeIn: 0,
-      apr: 0,
-      postCode: 0,
-      terms: 24,
-      leaseTerms: 36,
-      creditScore: 750,
-      mileages: 12000,
-    }
+    this.state = props.formData;
   }
 
   updateFormValue = (newState) => {
