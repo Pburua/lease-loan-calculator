@@ -129,7 +129,7 @@ class App extends React.Component {
           </div>
           <div className="column">
             <InfoCard
-              calcResults={this.state.calcResults}/>
+              calcResults={this.state.calcResults} />
           </div>
         </div>
       </>

@@ -24,6 +24,22 @@ class Form extends React.Component {
       });
   };
 
+  async loadIpInfo() {
+    const IP_INFO_ACCESS_TOKEN = '09f4aded924de8';
+
+    const response = await fetch('https://ipinfo.io/json?token=' + IP_INFO_ACCESS_TOKEN);
+    return await response.json();
+  }
+
+  componentDidMount = () => {
+    this.loadIpInfo()
+      .then((ipData) => {
+        this.updateFormValue({
+          postCode: ipData.postal,
+        });
+      });
+  };
+
   render() {
     if (this.props.firstTabOpened) {
       return (

@@ -14,26 +14,14 @@ class TextInput extends React.Component {
       [this.props.idName]: event.target.value,
     });
   }
-  
-  async loadIpInfo() {
-    const IP_INFO_ACCESS_TOKEN = '09f4aded924de8';
 
-    const response = await fetch('https://ipinfo.io/json?token=' + IP_INFO_ACCESS_TOKEN);
-    return await response.json();
-  }
-
-  componentDidMount() {
-    if (this.props.idName === 'postCode') {
-      this.loadIpInfo()
-        .then((ipData) => {
-          this.setState({
-            inputValue: ipData.postal,
-          });
-          this.props.updateState({
-            [this.props.idName]: ipData.postal,
-          });
-        });
+  static getDerivedStateFromProps(props, state) {
+    if (props.idName === 'postCode' && props.defValue !== state.inputValue) {
+      return {
+        inputValue: props.defValue,
+      };
     }
+    return null;
   }
 
   render() {
@@ -42,7 +30,7 @@ class TextInput extends React.Component {
         <label htmlFor={this.props.idName}>{this.props.pageName}</label>
         <input id={this.props.idName} type="text"
                value={this.state.inputValue}
-               onChange={this.handleChange.bind(this)}/>
+               onChange={this.handleChange.bind(this)} />
       </div>
     );
   }
