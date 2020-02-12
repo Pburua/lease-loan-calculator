@@ -8,12 +8,12 @@ class TextInput extends React.Component {
     }
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ inputValue: event.target.value });
     this.props.updateState({
       [this.props.idName]: event.target.value,
     });
-  }
+  };
 
   static getDerivedStateFromProps(props, state) {
     if (props.idName === 'postCode' && props.defValue !== state.inputValue) {
@@ -30,7 +30,7 @@ class TextInput extends React.Component {
         <label htmlFor={this.props.idName}>{this.props.pageName}</label>
         <input id={this.props.idName} type="text"
                value={this.state.inputValue}
-               onChange={this.handleChange.bind(this)} />
+               onChange={this.handleChange} />
       </div>
     );
   }

@@ -23,7 +23,11 @@ header {
 
 footer {
  border-top: 1px solid gray;
- justify-content: flex-end;
+
+ .hotkeys-info {
+  flex: 1;
+  margin: 15px;
+ }
 }
 
 main {
@@ -127,6 +131,13 @@ section {
      }
     }
    }
+
+  }
+
+  .err-messages {
+   display: flex;
+   flex-direction: column;
+   color: darkred;
   }
 
   .info-card {
@@ -142,5 +153,7 @@ section {
     flex: 1;
    }
   }
+
  }
+
 }

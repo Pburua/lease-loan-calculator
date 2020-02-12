@@ -21,8 +21,10 @@ class App extends React.Component {
       },
       calcResults: {
         monthlyPaymentLoan: 0,
+        monthlyPaymentLease: 0,
         taxes: [],
-      }
+      },
+      validationErrorStack: [],
     };
 
     document.addEventListener('keydown', this.handleKeyboard);
@@ -60,13 +62,55 @@ class App extends React.Component {
     this.setTab(!this.state.firstTabOpened);
   };
 
+  // error handling
+
+  showError = (str) => {
+    for (let i = 0; i < this.state.validationErrorStack.length; i += 1) {
+      if (str === this.state.validationErrorStack[i])
+        return false;
+    }
+    let validationErrorStack = this.state.validationErrorStack.slice();
+    validationErrorStack.push(str);
+    this.setState({
+      validationErrorStack: validationErrorStack,
+    });
+  };
+
+  hideErrors = (callback) => {
+    this.setState({
+      validationErrorStack: [],
+    }, callback);
+  };
+
   // calculations
 
+  isValueValid = () => {
+    let data = this.state.formData;
+    let msrp = 100;
+    let valid = true;
+    if (data.downPayment > (msrp / 4)) {
+      this.showError('Down Payment can’t be greater than ¼ of MSRP');
+      valid = false;
+    }
+    if (data.tradeIn > (msrp / 4)) {
+      this.showError('Trade-in can’t be greater than ¼ of MSRP');
+      valid = false;
+    }
+    return valid;
+  };
+
   calculate = () => {
-    this.calcResultsFunc()
-      .then((calcResults) => {
-        this.setState(calcResults);
-      });
+    this.hideErrors(
+      () => {
+        if (this.isValueValid()) {
+          this.hideErrors();
+          this.calcResultsFunc()
+            .then((calcResults) => {
+              this.setState(calcResults);
+            });
+        }
+      }
+    );
   };
 
   calcResultsFunc = () => {
@@ -133,6 +177,20 @@ class App extends React.Component {
     );
   }
 
+  renderErrMessages() {
+    let validationErrors = [];
+    for (let i = 0; i < this.state.validationErrorStack.length; i += 1) {
+      validationErrors.push(
+        <span key={this.state.validationErrorStack[i]}>{this.state.validationErrorStack[i]}</span>
+      );
+    }
+
+    return (
+      <div className={'err-messages'}>
+        {validationErrors}
+      </div>);
+  }
+
   render() {
     return (
       <>
@@ -142,6 +200,7 @@ class App extends React.Component {
             <Form
               firstTabOpened={this.state.firstTabOpened}
               onValueChange={this.updateAppData} />
+            {this.renderErrMessages()}
           </div>
           <div className="column">
             <InfoCard

@@ -43,41 +43,9 @@ class Form extends React.Component {
       });
   };
 
-  render() {
-    if (this.props.firstTabOpened) {
-      return (
-        <div className={'tab'}>
-          <TextInput idName={'downPayment'}
-                     pageName={'Down Payment'}
-                     defValue={this.state.downPayment}
-                     updateState={this.updateFormValue} />
-          <TextInput idName={'tradeIn'}
-                     pageName={'Trade-In'}
-                     defValue={this.state.tradeIn}
-                     updateState={this.updateFormValue} />
-          <TextInput idName={'postCode'}
-                     pageName={'Post Code'}
-                     defValue={this.state.postCode}
-                     updateState={this.updateFormValue} />
-          <TextInput idName={'apr'}
-                     pageName={'APR'}
-                     defValue={this.state.apr}
-                     updateState={this.updateFormValue} />
-          <ButtonRowInput idName={'terms'}
-                          pageName={'Terms'}
-                          defValue={this.state.terms}
-                          values={[ 12, 24, 36, 48, 72, 84 ]}
-                          updateState={this.updateFormValue} />
-          <ButtonRowInput idName={'creditScore'}
-                          pageName={'Credit Score'}
-                          defValue={this.state.creditScore}
-                          values={[ 600, 650, 700, 750, 800, 850, 900 ]}
-                          updateState={this.updateFormValue} />
-        </div>
-      );
-    }
+  renderSameInputs() {
     return (
-      <div className={'tab'}>
+      <>
         <TextInput idName={'downPayment'}
                    pageName={'Down Payment'}
                    defValue={this.state.downPayment}
@@ -92,6 +60,38 @@ class Form extends React.Component {
                    pageName={'Post Code'}
                    defValue={this.state.postCode}
                    updateState={this.updateFormValue} />
+      </>
+    );
+  }
+
+  render() {
+    if (this.props.firstTabOpened) {
+      return (
+        <div className={'tab'}>
+          {this.renderSameInputs()}
+
+          <TextInput idName={'apr'}
+                     pageName={'APR'}
+                     defValue={this.state.apr}
+                     updateState={this.updateFormValue} />
+
+          <ButtonRowInput idName={'terms'}
+                          pageName={'Terms'}
+                          defValue={this.state.terms}
+                          values={[ 12, 24, 36, 48, 72, 84 ]}
+                          updateState={this.updateFormValue} />
+
+          <ButtonRowInput idName={'creditScore'}
+                          pageName={'Credit Score'}
+                          defValue={this.state.creditScore}
+                          values={[ 600, 650, 700, 750, 800, 850, 900 ]}
+                          updateState={this.updateFormValue} />
+        </div>
+      );
+    }
+    return (
+      <div className={'tab'}>
+        {this.renderSameInputs()}
 
         <SelectInput idName={'leaseTerms'}
                      pageName={'Terms'}
