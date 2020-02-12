@@ -22,8 +22,10 @@ class ButtonRowInput extends React.Component {
     let buttons = [];
     for (let i = 0; i < this.props.values.length; i += 1) {
       let btnClass = '';
-      if (this.props.values[i] === this.state.value)
+      if (this.props.values[i] === this.state.value) {
+        console.log('selected btn found');
         btnClass = 'selected';
+      }
       buttons.push(
         <ButtonInput
           btnClass={btnClass}

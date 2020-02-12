@@ -108,7 +108,8 @@ section {
     background: lightgray;
    }
 
-   .text-input {
+   .text-input,
+   .select-input {
     flex: 1;
 
     label {

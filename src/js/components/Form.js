@@ -1,5 +1,6 @@
 import React from 'react';
 import TextInput from "./TextInput";
+import SelectInput from "./SelectInput";
 import ButtonRowInput from "./ButtonRowInput";
 
 class Form extends React.Component {
@@ -11,7 +12,9 @@ class Form extends React.Component {
       apr: 0,
       postCode: 0,
       terms: 24,
+      leaseTerms: 36,
       creditScore: 750,
+      mileages: 12000,
     }
   }
 
@@ -51,14 +54,14 @@ class Form extends React.Component {
           <TextInput idName={'tradeIn'}
                      pageName={'Trade-In'}
                      defValue={this.state.tradeIn}
-                     updateState={this.updateFormValue}/>
-          <TextInput idName={'apr'}
-                     pageName={'APR'}
-                     defValue={this.state.apr}
-                     updateState={this.updateFormValue}/>
+                     updateState={this.updateFormValue} />
           <TextInput idName={'postCode'}
                      pageName={'Post Code'}
                      defValue={this.state.postCode}
+                     updateState={this.updateFormValue} />
+          <TextInput idName={'apr'}
+                     pageName={'APR'}
+                     defValue={this.state.apr}
                      updateState={this.updateFormValue} />
           <ButtonRowInput idName={'terms'}
                           pageName={'Terms'}
@@ -75,7 +78,38 @@ class Form extends React.Component {
     }
     return (
       <div className={'tab'}>
-        second tab
+        <TextInput idName={'downPayment'}
+                   pageName={'Down Payment'}
+                   defValue={this.state.downPayment}
+                   updateState={this.updateFormValue} />
+
+        <TextInput idName={'tradeIn'}
+                   pageName={'Trade-In'}
+                   defValue={this.state.tradeIn}
+                   updateState={this.updateFormValue} />
+
+        <TextInput idName={'postCode'}
+                   pageName={'Post Code'}
+                   defValue={this.state.postCode}
+                   updateState={this.updateFormValue} />
+
+        <SelectInput idName={'leaseTerms'}
+                     pageName={'Terms'}
+                     defValue={this.state.leaseTerms}
+                     values={[ 24, 36, 48 ]}
+                     updateState={this.updateFormValue} />
+
+        <SelectInput idName={'mileages'}
+                     pageName={'Mileages'}
+                     defValue={this.state.mileages}
+                     values={[ 10000, 12000, 15000 ]}
+                     updateState={this.updateFormValue} />
+
+        <SelectInput idName={'creditScore'}
+                     pageName={'Credit Score'}
+                     defValue={this.state.creditScore}
+                     values={[ 600, 650, 700, 750, 800, 850, 900 ]}
+                     updateState={this.updateFormValue} />
       </div>
     );
   }
