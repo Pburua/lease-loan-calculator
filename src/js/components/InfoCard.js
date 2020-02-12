@@ -15,7 +15,7 @@ class InfoCard extends React.Component {
   }
 
   async componentDidMount() {
-    let response = await fetch('./src/js/mock-data.json');
+    let response = await fetch('./data/mock-data.json');
     let mockData = await response.json();
     this.setState(mockData);
   }
