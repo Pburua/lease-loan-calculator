@@ -2,6 +2,7 @@ import React from 'react';
 import BtnTab from './BtnTab';
 import TextInput from './TextInput';
 import ButtonRowInput from './ButtonRowInput';
+import Form from "./Form";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class App extends React.Component {
       firstTabOpened: this.loadFirstTabOpened(),
     };
 
-    document.addEventListener('keydown', this.keyBoardSwitchTab);
+    document.addEventListener('keydown', this.handleKeyboard);
 
     window.addEventListener('beforeunload', this.onPageLeave);
   }
@@ -28,11 +29,21 @@ class App extends React.Component {
     sessionStorage.setItem('firstTabOpened', JSON.stringify(this.state.firstTabOpened));
   };
 
-  keyBoardSwitchTab = (e) => {
+  handleKeyboard = (e) => {
     if (e.code === 'Tab') {
-      e.preventDefault();
-      this.setTab(!this.state.firstTabOpened);
+      this.keyBoardSwitchTab(e);
+    } else if (e.code === 'Enter') {
+      this.calculate(e);
     }
+  };
+
+  calculate = (e) => {
+
+  };
+
+  keyBoardSwitchTab = (e) => {
+    e.preventDefault();
+    this.setTab(!this.state.firstTabOpened);
   };
 
   setTab = (isFirstOpening) => {
@@ -60,27 +71,10 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.firstTabOpened) {
-      return (
-        <>
-          {this.renderTabSwitcher()}
-          <div className={'tab'}>
-            <TextInput idName={'downPayment'} pageName={'Down Payment'} defValue={0}/>
-            <TextInput idName={'tradeIn'} pageName={'Trade-In'} defValue={0}/>
-            <TextInput idName={'apr'} pageName={'APR'} defValue={0}/>
-            <TextInput idName={'postCode'} pageName={'Post Code'} defValue={0}/>
-            <ButtonRowInput idName={'terms'} pageName={'Terms'} defValue={24} values={[12, 24, 36, 48, 72, 84]}/>
-            <ButtonRowInput idName={'creditScore'} pageName={'Credit Score'} defValue={750} values={[600, 650, 700, 750, 800, 850, 900]}/>
-          </div>
-        </>
-      )
-    }
     return (
       <>
         {this.renderTabSwitcher()}
-        <div className={'tab'}>
-          second tab
-        </div>
+        <Form firstTabOpened={this.state.firstTabOpened}/>
       </>
     )
   }
