@@ -82,11 +82,13 @@ class App extends React.Component {
         else if (data.creditScore < 640) creditScoreValue = 1.2;
 
         let monthlyPaymentLoan = (msrp - data.tradeIn - data.downPayment) / data.terms * creditScoreValue * data.apr;
+        let monthlyPaymentLease = (msrp - data.tradeIn - data.downPayment) * data.mileages / 10000 / data.leaseTerms * creditScoreValue;
         let taxes = data.postCode.split('').map(num => num * 11);
 
         resolve({
           calcResults: {
             monthlyPaymentLoan: monthlyPaymentLoan.toFixed(2),
+            monthlyPaymentLease: monthlyPaymentLease.toFixed(2),
             taxes: taxes,
           }
         });
@@ -143,6 +145,7 @@ class App extends React.Component {
           </div>
           <div className="column">
             <InfoCard
+              firstTabOpened={this.state.firstTabOpened}
               calcResults={this.state.calcResults} />
           </div>
         </div>

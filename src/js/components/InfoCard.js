@@ -21,10 +21,13 @@ class InfoCard extends React.Component {
   }
 
   render() {
+    let monthlyPayment = this.props.firstTabOpened ?
+      this.props.calcResults.monthlyPaymentLoan: this.props.calcResults.monthlyPaymentLease;
+
     return (
       <div className={'info-card'}>
         <div>MSPR: {this.state.mspr}</div>
-        <div>Loan Monthly Payment: {this.props.calcResults.monthlyPaymentLoan}</div>
+        <div>Monthly Payment: {monthlyPayment}</div>
         <div>Taxes: {this.props.calcResults.taxes.join(', ')}</div>
         <div>Vehicle name: {this.state.vehicleName}</div>
         <div>Dealer name: {this.state.dealerName}</div>
