@@ -1,8 +1,7 @@
 import React from 'react';
 import BtnTab from './BtnTab';
-import TextInput from './TextInput';
-import ButtonRowInput from './ButtonRowInput';
 import Form from "./Form";
+import InfoCard from "./InfoCard";
 
 class App extends React.Component {
   constructor(props) {
@@ -89,10 +88,17 @@ class App extends React.Component {
   render() {
     return (
       <>
-        {this.renderTabSwitcher()}
-        <Form
-          firstTabOpened={this.state.firstTabOpened}
-          onValueChange={this.updateAppData}/>
+        <div className="row">
+          <div className="column">
+            {this.renderTabSwitcher()}
+            <Form
+              firstTabOpened={this.state.firstTabOpened}
+              onValueChange={this.updateAppData} />
+          </div>
+          <div className="column">
+            <InfoCard />
+          </div>
+        </div>
       </>
     )
   }

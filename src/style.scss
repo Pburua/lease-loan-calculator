@@ -39,9 +39,29 @@ section {
  background: white;
 
  #app {
-  width: 500px;
+  width: 700px;
   height: 500px;
   margin: auto;
+
+  .row {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+  .column {
+   height: 500px;
+  }
+
+  .column:first-child {
+   margin-right: 30px;
+  }
+
+  .column:last-child {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
 
   .tab-switcher {
    display: flex;
@@ -105,6 +125,20 @@ section {
       background: lightgray;
      }
     }
+   }
+  }
+
+  .info-card {
+   display: flex;
+   flex-direction: column;
+   width: 200px;
+   height: 400px;
+   padding: 10px;
+   border: 1px solid gray;
+   background: lightgray;
+
+   div {
+    flex: 1;
    }
   }
  }
