@@ -13,6 +13,9 @@ class ButtonRowInput extends React.Component {
     this.setState( {
       value: btnValue,
     });
+    this.props.updateState({
+      [this.props.idName]: btnValue,
+    });
   };
 
   render() {

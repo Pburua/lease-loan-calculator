@@ -9,9 +9,12 @@ class TextInput extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ inputValue: event.target.value })
+    this.setState({ inputValue: event.target.value });
+    this.props.updateState({
+      [this.props.idName]: event.target.value,
+    });
   }
-
+  
   async loadIpInfo() {
     const IP_INFO_ACCESS_TOKEN = '09f4aded924de8';
 
@@ -25,6 +28,9 @@ class TextInput extends React.Component {
         .then((ipData) => {
           this.setState({
             inputValue: ipData.postal,
+          });
+          this.props.updateState({
+            [this.props.idName]: ipData.postal,
           });
         });
     }

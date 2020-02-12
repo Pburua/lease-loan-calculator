@@ -10,6 +10,14 @@ class App extends React.Component {
 
     this.state = {
       firstTabOpened: this.loadFirstTabOpened(),
+      formData: {
+        downPayment: 0,
+        tradeIn: 0,
+        apr: 0,
+        postCode: 0,
+        terms: 24,
+        creditScore: 750,
+      }
     };
 
     document.addEventListener('keydown', this.handleKeyboard);
@@ -31,19 +39,20 @@ class App extends React.Component {
 
   handleKeyboard = (e) => {
     if (e.code === 'Tab') {
+      e.preventDefault();
       this.keyBoardSwitchTab(e);
     } else if (e.code === 'Enter') {
-      this.calculate(e);
+      e.preventDefault();
+      this.calculate();
     }
   };
 
-  calculate = (e) => {
-
+  keyBoardSwitchTab = () => {
+    this.setTab(!this.state.firstTabOpened);
   };
 
-  keyBoardSwitchTab = (e) => {
-    e.preventDefault();
-    this.setTab(!this.state.firstTabOpened);
+  calculate = () => {
+
   };
 
   setTab = (isFirstOpening) => {
@@ -70,11 +79,20 @@ class App extends React.Component {
     );
   }
 
+  updateAppData = (formData) => {
+    this.setState(formData,
+      () => {
+        this.calculate();
+      });
+  };
+
   render() {
     return (
       <>
         {this.renderTabSwitcher()}
-        <Form firstTabOpened={this.state.firstTabOpened}/>
+        <Form
+          firstTabOpened={this.state.firstTabOpened}
+          onValueChange={this.updateAppData}/>
       </>
     )
   }
