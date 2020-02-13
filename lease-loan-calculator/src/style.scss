@@ -1,0 +1,159 @@
+
+body {
+ display: flex;
+ flex-direction: column;
+ margin: 0;
+}
+
+header, footer {
+ display: flex;
+ width: 100%;
+ height: 50px;
+
+ h1 {
+  margin-left: 30px;
+  margin-right: 30px;
+  font-size: 20px;
+ }
+}
+
+header {
+ border-bottom: 1px solid gray;
+}
+
+footer {
+ border-top: 1px solid gray;
+
+ .hotkeys-info {
+  flex: 1;
+  margin: 15px;
+ }
+}
+
+main {
+ width: 100%;
+ flex: 1;
+ background: #f7f7f7;
+}
+
+section {
+ width: 1000px;
+ height: 600px;
+ margin: auto;
+ background: white;
+
+ #app {
+  width: 700px;
+  height: 500px;
+  margin: auto;
+
+  .row {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+  .column {
+   height: 500px;
+  }
+
+  .column:first-child {
+   margin-right: 30px;
+  }
+
+  .column:last-child {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+  .tab-switcher {
+   display: flex;
+   width: 402px;
+   height: 50px;
+   margin: auto;
+
+   .btn-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-bottom: none;
+    cursor: pointer;
+    background: white;
+
+    &:hover {
+     background: gray;
+    }
+
+    &.current {
+     background: lightgray;
+    }
+
+    &:first-child {
+     border-right: none;
+    }
+   }
+  }
+
+  .tab {
+   & {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid gray;
+    background: lightgray;
+   }
+
+   .text-input,
+   .select-input {
+    flex: 1;
+
+    label {
+     margin-right: 10px;
+    }
+   }
+
+   .btn-row-input {
+    flex: 1;
+
+    button {
+
+     &.selected {
+      background: lightgray;
+     }
+    }
+   }
+
+  }
+
+  .err-messages {
+   display: flex;
+   flex-direction: column;
+   color: darkred;
+  }
+
+  .info-card {
+   display: flex;
+   flex-direction: column;
+   width: 200px;
+   height: 400px;
+   padding: 10px;
+   border: 1px solid gray;
+   background: lightgray;
+
+   div {
+    flex: 1;
+   }
+  }
+
+ }
+
+}
